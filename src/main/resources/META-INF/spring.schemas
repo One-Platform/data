@@ -1,0 +1,3 @@
+http\://com.sinosoft.one/schema/data/jpa/one-data-jpa-1.0.xsd=com/sinosoft/one/data/jpa/repository/config/one-data-jpa-1.0.xsd
+http\://com.sinosoft.one/schema/data/jpa/one-data-jpa-1.1.xsd=com/sinosoft/one/data/jpa/repository/config/one-data-jpa-1.1.xsd
+http\://com.sinosoft.one/schema/data/jpa/one-data-jpa.xsd=com/sinosoft/one/data/jpa/repository/config/one-data-jpa-1.1.xsd

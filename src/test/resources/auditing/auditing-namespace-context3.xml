@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jpa="http://com.sinosoft.one/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://com.sinosoft.one/schema/data/jpa http://com.sinosoft.one/schema/data/jpa/one-data-jpa.xsd">
+    
+    <jpa:auditing set-dates="false" date-time-provider-ref="dateTimeProvider" />
+    
+    <bean id="dateTimeProvider" class="org.mockito.Mockito" factory-method="mock">
+    	<constructor-arg value="org.springframework.data.jpa.domain.support.DateTimeProvider" />
+    </bean>
+
+</beans>

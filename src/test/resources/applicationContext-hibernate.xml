@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+	<!-- 加载config文件夹的properties文件 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:config/*.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 开发用，用于拦截执行的SQL并打印
+	<bean id="dataSource" class="com.p6spy.engine.spy.P6DataSource">
+		<constructor-arg>
+			<ref local="dataSourceTarget" />
+		</constructor-arg>
+	</bean>
+	 -->
+	<!--数据源定义,使用应用服务器
+	<bean id="dataSourceTarget"
+		class="ins.framework.jndi.JndiObjectFindFactoryBean">
+		<property name="jndiName">
+			<value>arch4PlatformDataSource</value>
+		</property> 
+	</bean>
+	-->
+	 
+	<!-- 为开发方便，数据源定义使用Apache DBCP 连接池 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+	</bean>
+	
+	<!-- 大对象处理器 -->
+	<bean id="lobHandler" lazy-init="true" class="org.springframework.jdbc.support.lob.DefaultLobHandler" />
+	
+	<!-- 配置hibernate实用的sessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<!-- 配置sessionFactory中要用的数据源 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 大对象处理器 -->
+		<property name="lobHandler" ref="lobHandler" /> 
+
+		<!--  可以同时支持注解和xml的方式产生映射类-->
+		<property name="packagesToScan">                        
+			<list>                                
+				<value>com.sinosoft.one.**.model</value>
+			</list>                
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<!--<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>-->
+				<prop key="hibernate.cache.use_query_cache">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+                <prop key="javax.persistence.validation.mode">none</prop>
+			</props>
+		</property>  
+	</bean>
+	<!-- 配置事务类 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean> 
+	 <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate" >
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+</beans>

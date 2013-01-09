@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jpa="http://com.sinosoft.one/schema/data/jpa"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://com.sinosoft.one/schema/data/jpa http://com.sinosoft.one/schema/data/jpa/one-data-jpa.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <import resource="../infrastructure.xml" />
+
+	<context:spring-configured />
+    <jpa:auditing auditor-aware-ref="auditorAware" />
+    
+    <bean id="auditorAware" class="org.springframework.data.jpa.domain.sample.AuditorAwareStub">
+    	<constructor-arg ref="auditableUserRepository" />
+    </bean>
+
+    <jpa:repositories base-package="org.springframework.data.jpa.repository.sample">
+        <jpa:repository id="auditableUserRepository" />
+    </jpa:repositories>
+
+</beans>
