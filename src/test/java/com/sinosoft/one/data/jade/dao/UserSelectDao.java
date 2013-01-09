@@ -141,4 +141,7 @@ public interface UserSelectDao  extends UserDao {
 
     @SQL("{call test_04(?1,?2,?3)}")
     void testPrcComplexResult(String id,ProcedureResult... procedureResults2);
+
+    @SQL("SELECT * FROM t_user where ##(:condition)")
+    List<User>  selectUserByCondition(@Param("condition") String condition);
 }
