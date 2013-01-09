@@ -4,4 +4,5 @@ target/
 .classpath
 .springBeans
 .sonar4clipse
+.iml
 *.sonar4clipseExternals
