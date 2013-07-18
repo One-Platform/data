@@ -32,6 +32,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.NotWritablePropertyException;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.jdbc.core.RowMapper;
@@ -88,6 +90,8 @@ public class BeanPropertyRowMapper implements RowMapper {
 
     /** Set of bean properties we provide mapping for */
     private Set<String> mappedProperties;
+
+    private static ConversionService conversionService = new DefaultConversionService();
 
     /**
      * Create a new BeanPropertyRowMapper, accepting unpopulated properties
@@ -188,7 +192,7 @@ public class BeanPropertyRowMapper implements RowMapper {
         // why: 经过简单的笔记本测试，mappedClass.newInstrance性能比BeanUtils.instantiateClass(mappedClass)快1个数量级
         Object mappedObject = instantiateClass(this.mappedClass);
         BeanWrapper bw = new BeanWrapperImpl(mappedObject);
-
+        bw.setConversionService(this.conversionService);
         ResultSetMetaData rsmd = rs.getMetaData();
         int columnCount = rsmd.getColumnCount();
 

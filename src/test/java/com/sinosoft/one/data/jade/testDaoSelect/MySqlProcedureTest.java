@@ -31,7 +31,6 @@ import static org.junit.Assert.assertEquals;
 @DirtiesContext
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:application-context-jade.xml")
-@Ignore
 public class MySqlProcedureTest extends TestSuport {
     @Autowired
     UserSelectDao userSelectDao;
@@ -68,7 +67,9 @@ public class MySqlProcedureTest extends TestSuport {
     @Test
     public void testPrcResultSingle(){
         ResultSetProcedureResult<List<Group>> ResultSetProcedureResult1 = new ResultSetProcedureResult<List<Group>>(Group.class);
+        ResultSetProcedureResult<List<Group>> ResultSetProcedureResult2 = new ResultSetProcedureResult<List<Group>>(Group.class);
         userSelectDao.testPrcResultSingle("1", ResultSetProcedureResult1);
+        userSelectDao.testPrcResultSingle("1", ResultSetProcedureResult2);
         assertEquals(1,ResultSetProcedureResult1.getResult().size());
         assertEquals("1",ResultSetProcedureResult1.getResult().get(0).getId());
         assertEquals("group1",ResultSetProcedureResult1.getResult().get(0).getName());

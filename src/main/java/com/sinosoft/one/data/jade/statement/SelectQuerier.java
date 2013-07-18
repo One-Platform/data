@@ -196,8 +196,8 @@ public class SelectQuerier implements Querier {
 	}
 
 	private String parseCountSql(String sql) {
-		sql = StringUtils.lowerCase(sql);
-		int end = StringUtils.indexOf(sql, "from");
+//		sql = StringUtils.lowerCase(sql);
+		int end = StringUtils.indexOf(sql.toLowerCase(), "from");
 		String s = StringUtils.substring(sql,end);
 		return "select count(1) " + s;
 	}

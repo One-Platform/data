@@ -9,7 +9,7 @@
         <version>1.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>data</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
     <name>One :: Data</name>
 
     <properties>
@@ -239,6 +239,12 @@
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
         </dependency>
+        <!--<dependency>
+            <groupId>com.sinosoft.one</groupId>
+            <artifactId>log4jdbc</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>-->
 </dependencies>
 
     <build>

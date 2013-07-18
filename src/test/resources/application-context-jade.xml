@@ -31,7 +31,7 @@
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
 
-    <bean class="com.sinosoft.one.data.jade.context.spring.JadeBeanFactoryPostProcessor" />
+
 
     <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">-->
         <!--<property name="driverClassName" value="org.hsqldb.jdbcDriver" />-->
@@ -45,7 +45,9 @@
         <property name="password" value="${jdbc.password}" />
         <property name="driverClassName" value="${jdbc.driverClassName}" />
     </bean>
-
+    <!--<bean id="dataSourceProxy" class="com.sinosoft.one.log4jdbc.Log4jdbcProxyDataSource">
+        <constructor-arg ref="dataSource" />
+    </bean>-->
     <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">-->
         <!--<property name="url" value="jdbc:mysql://localhost:3306/mini-web"/>-->
         <!--<property name="username" value="root" />-->

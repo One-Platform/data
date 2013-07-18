@@ -19,7 +19,7 @@ public abstract class AbstractSuiteDataSourceSql {
     public static final String ORDER = " order by ";
 
     protected String suiteSql(String sql,Pageable pageable,Sort sort) {
-        sql = sql.toLowerCase();
+//        sql = sql.toLowerCase()
         if(pageable!=null){
             return renderForPage(sql,pageable);
         } else {

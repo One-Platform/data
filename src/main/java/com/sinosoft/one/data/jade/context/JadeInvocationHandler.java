@@ -199,7 +199,7 @@ public class JadeInvocationHandler implements InvocationHandler {
             return args[0] == proxy;
         }
         if (methodName.equals("clone")) {
-            throw new CloneNotSupportedException("clone is not supported for jade dao.");
+            throw new CloneNotSupportedException("clone is not supported for jade model.");
         }
         throw new UnsupportedOperationException(daoMetaData.getDAOClass().getName() + "#"
                 + method.getName());

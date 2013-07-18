@@ -11,6 +11,7 @@ import com.sinosoft.one.data.jade.model.Group;
 import com.sinosoft.one.data.jade.model.SomePropertis;
 import com.sinosoft.one.data.jade.model.User;
 import com.sinosoft.one.data.jade.model.User1;
+import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,6 +61,13 @@ public class SelectTest extends TestSuport {
         }
         groupDao.addBatchGroupWithAnnoUseEntityParam(groups);
         super.init();
+    }
+
+    @Test
+    public void testSelectUserByCondition() {
+        List<User> users = userSelectDao.selectUserByCondition("id='AAF000'");
+        Assert.assertEquals(1, users.size());
+        Assert.assertEquals("user0", users.get(0).getName());
     }
 
     //4.1.1

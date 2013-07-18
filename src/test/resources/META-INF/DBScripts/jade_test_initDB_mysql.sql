@@ -75,7 +75,7 @@ INSERT INTO `t_code_gender` VALUES ('0','女'),('1','男'),('3', 'g3'),('4', 'g4
 -- ----------------------------
 --  Procedure
 -- ----------------------------
-CREATE PROCEDURE `test_02`(in newid varchar(10))
+CREATE PROCEDURE test_02( newid char(10))
 begin
 	select * from t_code_group where id = newid;
 end;

@@ -113,12 +113,12 @@ public class JdbcStatement implements Statement {
         //        
         //        // path、catalog、node
         //        Class<?> daoClass = metaData.getClassMetaData().getDAOClass();
-        //        DAO dao = daoClass.getAnnotation(DAO.class);
+        //        DAO model = daoClass.getAnnotation(DAO.class);
         //
         //        // catalog
         //        if (result.getClientInfo(RoutingConnection.CATALOG) == null) {
-        //            if (dao.catalog() != null && dao.catalog().length() > 0) {
-        //                result.setClientInfo(RoutingConnection.CATALOG, dao.catalog());
+        //            if (model.catalog() != null && model.catalog().length() > 0) {
+        //                result.setClientInfo(RoutingConnection.CATALOG, model.catalog());
         //            }
         //        }
         //

@@ -31,7 +31,7 @@ import java.sql.Connection;
  * <p>
  * 一个Jade DAO需要符合以下基本要求：
  * <ul>
- * <li>1、 在dao package或子package下，如com.renren.myapp.dao；</li>
+ * <li>1、 在dao package或子package下，如com.renren.myapp.model；</li>
  * <li>2、 是一个public的java interface 类型；</li>
  * <li>3、 名称必须以大写DAO字母结尾，如UserDAO；</li>
  * <li>4、 必须标注@DAO 注解；</li>
@@ -39,7 +39,7 @@ import java.sql.Connection;
  * <p>
  * 
  * 如果DAO接口被打包成为一个jar的，为了要被Jade识别，必须在这个jar的 META-INFO/rose.properties
- * 文件中包含这个属性：rose=dao (rose=*亦可)。
+ * 文件中包含这个属性：rose=model (rose=*亦可)。
  * 
  * 
  * @see http://code.google.com/p/paoding-rose/wiki/Jade_DAO_Spec

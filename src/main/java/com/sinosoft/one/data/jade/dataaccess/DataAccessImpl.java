@@ -37,8 +37,7 @@ import javax.persistence.EntityManager;
 
 import java.math.BigDecimal;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -125,7 +124,6 @@ public class DataAccessImpl implements DataAccess, Repository {
     /**
      * 存储过程 2012-10-12
      */
-    @Transactional
     public void call(String sql, Object[] args, RowMapperFactory rowMapperFactory, ResultSetProcedureResult[] rsprs) {
         Session session = em.unwrap(Session.class);
         CallWork work = new CallWork(sql, args, rsprs,rowMapperFactory);
@@ -200,7 +198,14 @@ public class DataAccessImpl implements DataAccess, Repository {
                     callableStatement.registerOutParameter(i+1,oprt.getJdbcType());
                     oprts.add(oprt);
                 } else {
-                    callableStatement.setObject(i+1,args[i]);
+                    Object arg = args[i];
+                    if(arg instanceof java.util.Date) {
+                        java.util.Date tempDate = (java.util.Date)arg;
+                        java.sql.Timestamp timestamp = new Timestamp(tempDate.getTime());
+                        callableStatement.setObject(i+1, timestamp);
+                    } else {
+                        callableStatement.setObject(i+1,args[i]);
+                    }
                 }
             }
             callableStatement.execute();

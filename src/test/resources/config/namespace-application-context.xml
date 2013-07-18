@@ -11,12 +11,12 @@
 		
 		Simplified DAO configuration:
 		
-		1. Looks for DAO interfaces in ${dao-config.dao-package-name} named ${dao.name}Dao
-		2. Uses entity classes from ${dao-config.entity-package-name}
-		3. Registers daos under ${dao.name}Dao in the applicationContext
-		4. Add postfix attributes to dao-config element as needed
+		1. Looks for DAO interfaces in ${model-config.model-package-name} named ${model.name}Dao
+		2. Uses entity classes from ${model-config.entity-package-name}
+		3. Registers daos under ${model.name}Dao in the applicationContext
+		4. Add postfix attributes to model-config element as needed
 		
-		You can register DAOs as needed by simply adding "dao" elements named after domain classes
+		You can register DAOs as needed by simply adding "model" elements named after domain classes
 		and provide an DAO interface named as described above. 
 		
 		! Note, that PersistenceAnnotationBeanPostProcessor and PersistenceExceptionTranslationPostProcessor !

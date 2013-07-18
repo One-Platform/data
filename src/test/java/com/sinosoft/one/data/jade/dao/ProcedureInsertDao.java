@@ -13,6 +13,10 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * To change this template use File | Settings | File Templates.
  */
 public interface ProcedureInsertDao extends PagingAndSortingRepository<User, String> {
-    @SQL("{ call testinsert(?1.id, ?1.name, ?1.createTime) }")
-    void insertProcedure(TestProcedureInsertModel model);
+  //  @SQL("{ call testinsert(?1.id, ?1.name, ?1.createTime) }")
+  //  void insertProcedure(TestProcedureInsertModel model);
+    @SQL("select * from T_PROCEDURE_INSERT_MODEL where id=?1")
+    TestProcedureInsertModel selectTestProcedureInsertModel(String id);
+    @SQL("delete from T_PROCEDURE_INSERT_MODEL")
+    void deleteAll();
 }

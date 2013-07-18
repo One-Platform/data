@@ -15,6 +15,7 @@
  */
 package com.sinosoft.one.data.jpa.repository.config;
 
+import com.sinosoft.one.data.jade.context.spring.JadeBeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -122,5 +123,10 @@ class OneJpaRepositoryConfigDefinitionParser extends
 
 			registerWithSourceAndGeneratedBeanName(registry, definition, source);
 		}
+
+        //register JadeBean
+        AbstractBeanDefinition definition = BeanDefinitionBuilder.rootBeanDefinition(JadeBeanFactoryPostProcessor.class)
+                .getBeanDefinition();
+        registerWithSourceAndGeneratedBeanName(registry, definition, source);
 	}
 }

@@ -853,6 +853,14 @@ public class UserRepositoryTests {
 		//assertThat(result, hasItem(1));
 	}
 
+    @Test
+    public void testMergeWithId() {
+        flushTestUsers();
+        firstUser.setId(11111);
+        repository.save(firstUser);
+        System.out.println(firstUser.getId() + "==================");
+    }
+
 	protected void flushTestUsers() {
 
 		firstUser = repository.save(firstUser);

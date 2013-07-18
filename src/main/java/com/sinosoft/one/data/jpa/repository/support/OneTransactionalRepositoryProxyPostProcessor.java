@@ -18,6 +18,8 @@ package com.sinosoft.one.data.jpa.repository.support;
 import com.sinosoft.one.data.jade.annotation.SQL;
 import com.sinosoft.one.data.jade.annotation.SQLType;
 import com.sinosoft.one.data.jade.dataaccess.DataAccessImpl;
+import com.sinosoft.one.data.jade.dataaccess.procedure.ResultSetProcedureResult;
+import com.sinosoft.one.data.jade.rowmapper.RowMapperFactory;
 import com.sinosoft.one.data.jade.statement.StatementMetaData;
 import com.sinosoft.one.data.jpa.repository.query.SqlQueries;
 import org.apache.commons.logging.Log;
@@ -315,7 +317,7 @@ class OneTransactionalRepositoryProxyPostProcessor implements RepositoryProxyPos
                         if(sqlType == SQLType.WRITE) {
                             tempMethod = tempClass.getDeclaredMethod("update", String.class, Object[].class, KeyHolder.class);
                         } else if(sqlType == SQLType.PROCEDURE){
-                            tempMethod = tempClass.getDeclaredMethod("call", String.class, Object[].class, KeyHolder.class);
+                            tempMethod = tempClass.getDeclaredMethod("call", String.class, Object[].class, RowMapperFactory.class, ResultSetProcedureResult[].class);
                         } else {
                             tempMethod = tempClass.getDeclaredMethod("select", String.class, Object[].class, RowMapper.class);
                         }
